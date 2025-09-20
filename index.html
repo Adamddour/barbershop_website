@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lintorf Barbershop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✂️</text></svg>" type="image/svg+xml">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        @keyframes blob {
+            0% { transform: scale(1) translate(0, 0); }
+            33% { transform: scale(1.1) translate(30px, -50px); }
+            66% { transform: scale(0.9) translate(-20px, 20px); }
+            100% { transform: scale(1) translate(0, 0); }
+        }
+
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+        .animation-delay-2000 { animation-delay: 2s; }
+        .animation-delay-4000 { animation-delay: 4s; }
+
+        .text-shadow-lg {
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .glass-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(16px);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Mobile Optimierungen */
+        @media (max-width: 768px) {
+            .mobile-stack {
+                flex-direction: column;
+            }
+            
+            .mobile-text-center {
+                text-align: center;
+            }
+            
+            .mobile-padding {
+                padding: 1rem;
+            }
+            
+            .mobile-margin-bottom {
+                margin-bottom: 1.5rem;
+            }
+            
+            .mobile-full-width {
+                width: 100%;
+            }
+            
+            .mobile-nav-button {
+                width: 100%;
+                margin: 0.25rem 0;
+            }
+            
+            /* Kleinere Blobs auf Mobilgeräten */
+            .absolute.w-96.h-96 {
+                width: 16rem !important;
+                height: 16rem !important;
+            }
+        }
+
+        /* Menü-Button für Mobile */
+        .mobile-menu-button {
+            display: none;
+        }
+
+        @media (max-width: 640px) {
+            .mobile-menu-button {
+                display: block;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+            
+            #nav-buttons {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            #nav-buttons.mobile-visible {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-900 text-gray-100 flex flex-col items-center p-4">
+    <div class="absolute inset-0 z-0 overflow-hidden">
+        <div class="absolute w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob top-10 left-10"></div>
+        <div class="absolute w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob animation-delay-2000 top-40 right-20"></div>
+        <div class="absolute w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob animation-delay-4000 bottom-10 left-40"></div>
+    </div>
+    
+    <div class="w-full max-w-4xl z-10 my-8 glass-card mobile-padding">
+        <header class="flex flex-col items-center justify-center p-4 mobile-padding">
+            <div class="w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-white border-opacity-50 overflow-hidden shadow-lg mb-4">
+                <img 
+                    src="C:\Users\AMD SYSTEM\Desktop\boase_v_1\photo_5357497881424164562_x.jpg" 
+                    alt="Lintorf Barbershop Logo" 
+                    class="object-cover w-full h-full" 
+                />
+            </div>
+            <h1 class="text-3xl md:text-5xl font-extrabold text-white text-shadow-lg mb-2 text-center mobile-text-center">
+                LINTORF BARBERSHOP
+            </h1>
+            <p class="text-lg md:text-2xl font-light text-center mobile-text-center">
+                Mit und ohne Termin
+            </p>
+        </header>
+
+        <button class="mobile-menu-button px-6 py-3 rounded-full font-semibold transition-all duration-300 bg-white bg-opacity-20 text-white shadow-md">
+            Menü ☰
+        </button>
+
+        <nav class="flex justify-center my-4 md:my-8 flex-wrap" id="nav-buttons">
+            <button
+                data-tab="home"
+                class="px-4 py-2 md:px-6 md:py-3 mx-1 my-1 md:mx-2 rounded-full font-semibold transition-all duration-300 bg-white bg-opacity-20 text-white shadow-md mobile-nav-button"
+            >
+                Startseite
+            </button>
+            <button
+                data-tab="services"
+                class="px-4 py-2 md:px-6 md:py-3 mx-1 my-1 md:mx-2 rounded-full font-semibold transition-all duration-300 bg-transparent text-gray-300 hover:bg-white hover:bg-opacity-10 mobile-nav-button"
+            >
+                Dienstleistungen
+            </button>
+            <button
+                data-tab="contact"
+                class="px-4 py-2 md:px-6 md:py-3 mx-1 my-1 md:mx-2 rounded-full font-semibold transition-all duration-300 bg-transparent text-gray-300 hover:bg-white hover:bg-opacity-10 mobile-nav-button"
+            >
+                Kontakt
+            </button>
+        </nav>
+
+        <main class="transition-all duration-500 ease-in-out" id="content-container">
+            <div id="home-content">
+                <div class="p-2 md:p-8">
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 mb-6 md:mb-8 mobile-stack">
+                        <div class="w-full md:flex-1 text-center glass-card mobile-margin-bottom">
+                            <h2 class="text-xl md:text-2xl font-bold mb-4">Über Uns</h2>
+                            <p class="font-light leading-relaxed text-sm md:text-base">
+                                Herzlich willkommen bei Lintorf Barbershop! Wir sind Ihr Experte für erstklassige Haarschnitte und Bartpflege. Unsere Leidenschaft ist es, Ihnen nicht nur einen neuen Look zu verpassen, sondern auch ein unvergleichliches Erlebnis zu bieten, bei dem Sie sich entspannen und wohlfühlen können. Wir arbeiten mit und ohne Termin, um Ihnen maximale Flexibilität zu ermöglichen.
+                            </p>
+                        </div>
+                       
+                    </div>
+                    
+                    <div class="text-center glass-card">
+                        <h2 class="text-xl md:text-2xl font-bold mb-4">Öffnungszeiten</h2>
+                        <ul class="text-base md:text-lg font-light leading-loose">
+                            <li>Mo - Fr: 9:00 - 19:00 Uhr</li>
+                            <li>Sa: 9:00 - 17:00 Uhr</li>
+                        </ul>
+                        <p class="mt-4 text-xs md:text-sm font-light">
+                            <span class="font-semibold text-pink-300">Hinweis:</span> Wir bieten unsere Besuche mit oder ohne Termin an.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="services-content" class="hidden">
+                <div class="p-2 md:p-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+                        <div class="glass-card">
+                            <h2 class="text-xl md:text-2xl font-bold mb-4 text-center">Preisliste</h2>
+                            <div class="space-y-4">
+                                <div>
+                                    <h3 class="text-lg md:text-xl font-semibold mb-2 text-yellow-300">Haarschnitte</h3>
+                                    <ul class="space-y-2">
+                                        <li class="flex justify-between items-center text-base md:text-lg font-light">
+                                            <span>Trockenhaarschnitt</span>
+                                            <span>20,00 €</span>
+                                        </li>
+                                        <li class="flex justify-between items-center text-base md:text-lg font-light">
+                                            <span>Waschen,Schneiden,Föhnen& Stylen</span>
+                                            <span>23,00 €</span>
+                                        </li>
+                                        <li class="flex justify-between items-center text-base md:text-lg font-light">
+                                            <span>Kinderhaarschnitt</span>
+                                            <span>15,00 €</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg md:text-xl font-semibold mb-2 text-yellow-300">Bartpflege</h3>
+                                    <ul class="space-y-2">
+                                        <li class="flex justify-between items-center text-base md:text-lg font-light">
+                                            <span>Bartrasur</span>
+                                            <span>10,00 €</span>
+                                        </li>
+                                        <li class="flex justify-between items-center text-base md:text-lg font-light">
+                                            <span>Bartrasur (nach Modell)</span>
+                                            <span>12,00 €</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg md:text-xl font-semibold mb-2 text-yellow-300">Pflegebehandlungen</h3>
+                                    <ul class="space-y-2">
+                                        <li class="flex justify-between items-center text-base md:text-lg font-light">
+                                            <span>Gesichtsmaske</span>
+                                            <span>7,00 €</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg md:text-xl font-semibold mb-2 text-yellow-300">Beauty Extras</h3>
+                                    <ul class="space-y-2">
+                                        <li class="flex justify-between items-center text-base md:text-lg font-light">
+                                            <span>Entwachsen komplett</span>
+                                            <span>10,00 €</span>
+                                        </li>
+                                        <li class="flex justify-between items-center text-base md:text-lg font-light">
+                                            <span>Augenbrauen zupfen</span>
+                                            <span>7,00 €</span>
+                                        </li>
+                                        <li class="flex justify-between items-center text-base md:text-lg font-light">
+                                            <span>Ohrenhaare entwachsen</span>
+                                            <span>3,00 €</span>
+                                        </li>
+                                        <li class="flex justify-between items-center text-base md:text-lg font-light">
+                                            <span>Nasenhaare entwachsen</span>
+                                            <span>3,00 €</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col items-center text-center glass-card">
+                            <h2 class="text-xl md:text-3xl font-bold text-white mb-4">VIP Paket</h2>
+                            <p class="text-lg md:text-xl font-light mb-4">
+                                bei Lintorf Barbershop nur <span class="text-2xl md:text-3xl font-extrabold text-pink-300">42 €</span>
+                            </p>
+                            <p class="text-sm md:text-md font-light mb-4 md:mb-6 leading-relaxed">
+                                Rundum gepflegt mit unserem exklusiven Verwöhnprogramm:
+                            </p>
+                            <ul class="text-left font-light list-disc list-inside space-y-2 text-base md:text-lg">
+                                <li>Waschen, Schneiden, Föhnen</li>
+                                <li>Augenbrauen zupfen</li>
+                                <li>Bartrasur nach Modell</li>
+                                <li>Gesichtsmaske</li>
+                                <li>Entwachsen komplett</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="contact-content" class="hidden">
+                <div class="p-2 md:p-8">
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 mobile-stack">
+                        <div class="w-full md:flex-1 text-center glass-card mobile-margin-bottom">
+                            <h2 class="text-xl md:text-2xl font-bold mb-4">Kontakt & Anfahrt</h2>
+                            <p class="text-base md:text-lg font-light mb-4">
+                                Konrad-Adenauer-Platz 26<br />
+                                40885 Ratingen
+                            </p>
+                            <p class="text-base md:text-lg font-light">
+                                Telefon: <a href="tel:01737063183" class="text-blue-300 hover:underline">01737063183</a>
+                            </p>
+                            <p class="text-base md:text-lg font-light mt-2">
+                                Instagram: <a href="https://instagram.com/lintorf_barbershop" target="_blank" rel="noopener noreferrer" class="text-blue-300 hover:underline">@lintorf_barbershop</a>
+                            </p>
+                        </div>
+
+                        <div class="w-full md:flex-1 text-center glass-card">
+                            <h2 class="text-xl md:text-2xl font-bold mb-4">Kartenausschnitt</h2>
+                            <div class="w-full h-48 md:h-80 bg-gray-800 rounded-xl overflow-hidden shadow-inner border border-white border-opacity-20">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2493.567086884305!2d6.820352077189178!3d51.30906233158066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b8d009b1f7e0ed%3A0xe54e19194d2f1f0a!2sKonrad-Adenauer-Platz%2026%2C%2040885%20Ratingen%2C%20Germany!5e0!3m2!1sen!2sus!4v1689264020000!5m2!1sen!2sus"
+                                    width="100%"
+                                    height="100%"
+                                    style="border: 0;"
+                                    allowfullscreen=""
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                    title="Google Maps Location"
+                                ></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navButtons = document.getElementById('nav-buttons');
+            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            const contentSections = {
+                'home': document.getElementById('home-content'),
+                'services': document.getElementById('services-content'),
+                'contact': document.getElementById('contact-content')
+            };
+
+            function showTab(tabId) {
+                for (const id in contentSections) {
+                    if (id === tabId) {
+                        contentSections[id].classList.remove('hidden');
+                    } else {
+                        contentSections[id].classList.add('hidden');
+                    }
+                }
+                updateActiveButton(tabId);
+                
+                // Menü auf Mobilgeräten nach Klick ausblenden
+                if (window.innerWidth <= 640) {
+                    navButtons.classList.remove('mobile-visible');
+                    mobileMenuButton.textContent = 'Menü ☰';
+                }
+            }
+
+            function updateActiveButton(tabId) {
+                const buttons = navButtons.querySelectorAll('button');
+                buttons.forEach(button => {
+                    if (button.dataset.tab === tabId) {
+                        button.classList.add('bg-white', 'bg-opacity-20', 'text-white', 'shadow-md');
+                        button.classList.remove('bg-transparent', 'text-gray-300', 'hover:bg-white', 'hover:bg-opacity-10');
+                    } else {
+                        button.classList.remove('bg-white', 'bg-opacity-20', 'text-white', 'shadow-md');
+                        button.classList.add('bg-transparent', 'text-gray-300', 'hover:bg-white', 'hover:bg-opacity-10');
+                    }
+                });
+            }
+
+            // Event-Listener für Navigationsbuttons
+            navButtons.addEventListener('click', (event) => {
+                if (event.target.tagName === 'BUTTON') {
+                    const tabId = event.target.dataset.tab;
+                    if (tabId) {
+                        showTab(tabId);
+                    }
+                }
+            });
+
+            // Mobile Menü-Toggle
+            mobileMenuButton.addEventListener('click', () => {
+                navButtons.classList.toggle('mobile-visible');
+                mobileMenuButton.textContent = navButtons.classList.contains('mobile-visible') 
+                    ? 'Menü ✕' 
+                    : 'Menü ☰';
+            });
+
+            // Initial view
+            showTab('home');
+        });
+    </script>
+</body>
+</html>
